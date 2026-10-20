@@ -26,6 +26,7 @@
     <a href="#numbers">The numbers</a>
     <a href="#land">The land</a>
     <a href="#homestead">The homestead</a>
+    <a href="#freedom">Together pays</a>
     <a href="#reasons">250 reasons</a>
     <a href="#plan">The plan</a>
     <a href="#roles">Who does what</a>
@@ -358,6 +359,79 @@
       <article class="card">
         <h3>Garden, orchard, and the rest</h3>
         <p>Cheyenne's season is short and the wind is real, so the garden gets a windbreak, raised beds, and a greenhouse or high tunnel. Potatoes, squash, beans, greens, and root crops do great at 6,000 feet. Add a few pigs on kitchen scraps and a couple of beehives, and the land is feeding us.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- TOGETHER PAYS -->
+<section class="section section-warm" id="freedom">
+  <div class="wrap">
+    <p class="eyebrow">Financial freedom</p>
+    <h2>What we make here can set us free. Only if we do it together.</h2>
+    <p class="intro">Every product line on this list is a real business people in Laramie County already run: freezer beef, sourdough, eggs, soap, fab work, a repair shop. The catch is that each one is a part-time job. One household can carry one or two. Six households can carry all of them, and all of them together is a living that nobody has to ask a boss for.</p>
+
+    <div class="biz">
+      <div class="biz-lines">
+        <div class="biz-head">
+          <h3>Build the family business</h3>
+          <p>Check what we'd actually do. Numbers are conservative planning figures for a Cheyenne-scale operation and you can change the scale below.</p>
+        </div>
+        <div id="bizLines"></div>
+        <div class="biz-controls">
+          <label>Scale
+            <select id="bizScale">
+              <option value="0.5">Market table (weekends)</option>
+              <option value="1" selected>Serious side business</option>
+              <option value="2">Full operation</option>
+            </select>
+          </label>
+          <label>Hours per week each household can give<input type="number" id="bizHours" min="1" max="60" value="15"></label>
+          <label>Keep after expenses <span class="hint">percent</span><input type="number" id="bizMargin" min="10" max="90" value="50"></label>
+        </div>
+      </div>
+
+      <div class="biz-out">
+        <div class="biz-compare">
+          <div class="biz-col biz-alone">
+            <span class="biz-tag">One household alone</span>
+            <strong id="aloneGross">$0</strong>
+            <em>gross a year</em>
+            <p id="aloneNote"></p>
+          </div>
+          <div class="biz-col biz-together">
+            <span class="biz-tag">Six households together</span>
+            <strong id="togGross">$0</strong>
+            <em>gross a year</em>
+            <p id="togNote"></p>
+          </div>
+        </div>
+        <div class="tiles">
+          <div class="tile"><span class="tile-label">Hours a week the whole plan needs</span><strong id="bizNeedHrs">0</strong><span class="tile-sub" id="bizHaveHrs"></span></div>
+          <div class="tile"><span class="tile-label">Net, after expenses</span><strong id="bizNet">$0</strong><span class="tile-sub" id="bizNetEach"></span></div>
+          <div class="tile"><span class="tile-label">Land payment covered</span><strong id="bizCover">0×</strong><span class="tile-sub" id="bizCoverSub"></span></div>
+          <div class="tile"><span class="tile-label">Land paid off from ranch income alone</span><strong id="bizPayoff">0 yrs</strong><span class="tile-sub">if every net dollar goes to the note</span></div>
+        </div>
+        <div class="total">
+          <span>Why only together</span>
+          <strong id="bizLine">The hours don't exist for one family.</strong>
+          <p id="bizWhy"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cards cards-3">
+      <article class="card">
+        <h3>One brand, one table, one checkout</h3>
+        <p>A single family name on the beef, the bread, the eggs, and the soap. One farmers market booth instead of six. One website with one checkout. One freezer-beef waiting list. Customers who come for sourdough leave with eggs and a bar of soap. Nobody gets that cross-sell alone.</p>
+      </article>
+      <article class="card">
+        <h3>Shared costs, shared equipment</h3>
+        <p>One commercial kitchen passes inspection for the whole bakery line. One walk-in freezer holds everybody's beef. One trailer hauls to market. One LLC, one insurance policy, one set of books. Every one of those is a cost that kills a one-household business and barely registers across six.</p>
+      </article>
+      <article class="card">
+        <h3>Freedom means options</h3>
+        <p>This is not about everyone quitting their job on day one. It is about the ranch income covering the land payment first, then a household's mortgage, then a household's whole living. Each step is one more person who can walk away from a job they hate because the family built something that pays. Logan first. Then whoever is next.</p>
       </article>
     </div>
   </div>

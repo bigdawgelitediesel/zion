@@ -215,6 +215,84 @@
   homeIds.forEach((id) => { $(id).value = D[id]; $(id).addEventListener("input", renderHomestead); });
   renderLand();
 
+  // ---------- Together pays ----------
+  const LINES = [
+    { id: "beef", name: "Freezer beef", who: "Logan + everyone on butcher day", gross: 35000, hrs: 8, note: "10 head a year sold by the half and quarter" },
+    { id: "bakery", name: "Sourdough and baked goods", who: "Abby", gross: 36000, hrs: 25, note: "market Saturdays plus standing orders in town" },
+    { id: "eggs", name: "Eggs", who: "the kids", gross: 12000, hrs: 6, note: "about 100 hens, sold by the dozen" },
+    { id: "soap", name: "Handmade soap and candles", who: "open", gross: 8000, hrs: 5, note: "market table, gift boxes, online" },
+    { id: "produce", name: "Honey and produce", who: "open", gross: 6000, hrs: 6, note: "high tunnel, a few hives, a farm stand" },
+    { id: "firewood", name: "Firewood", who: "whoever has a Saturday", gross: 5000, hrs: 4, note: "seasonal, sold by the cord" },
+    { id: "fab", name: "Welding and fab", who: "open", gross: 25000, hrs: 12, note: "gates, panels, trailer repair, custom work" },
+    { id: "shop", name: "Vehicle and equipment repair", who: "Jacob", gross: 40000, hrs: 15, note: "outside work out of the ranch shop" },
+    { id: "hay", name: "Hay", who: "Logan", gross: 10000, hrs: 5, note: "if the ground and water allow" }
+  ];
+  const bizEl = $("bizLines");
+  if (bizEl) {
+    bizEl.innerHTML = LINES.map((l) => `
+      <label class="biz-line">
+        <input type="checkbox" data-line="${l.id}" checked>
+        <span class="bl-main"><strong>${l.name}</strong><span class="bl-note">${l.note}. Run by ${l.who}.</span></span>
+        <span class="bl-num" data-gross="${l.id}">${money(l.gross)}</span>
+        <span class="bl-hrs" data-hrs="${l.id}">${l.hrs} hrs/wk</span>
+      </label>`).join("");
+    const famCount = () => Math.max(2, Math.min(12, Math.round(val("families")) || 6));
+    const loanPayment = () => {
+      const land = val("acres") * val("pricePerAcre");
+      const infra = val("wells") * val("wellCost") + val("roadFeet") * val("roadCostPerFoot") + val("powerFeet") * val("powerCostPerFoot");
+      const principal = (land + infra) * 0.75;
+      return { principal, monthly: payment(principal, 7.5, 20) };
+    };
+    function renderBiz() {
+      const scale = parseFloat($("bizScale").value) || 1;
+      const hrsEach = Math.max(1, val("bizHours"));
+      const margin = Math.max(0.1, Math.min(0.9, val("bizMargin") / 100));
+      const fam = famCount();
+      const active = LINES.filter((l) => bizEl.querySelector(`[data-line="${l.id}"]`).checked);
+      LINES.forEach((l) => {
+        bizEl.querySelector(`[data-gross="${l.id}"]`).textContent = money(l.gross * scale);
+        bizEl.querySelector(`[data-hrs="${l.id}"]`).textContent = `${Math.round(l.hrs * Math.sqrt(scale) * 10) / 10} hrs/wk`;
+      });
+      const needHrs = active.reduce((a, l) => a + l.hrs * Math.sqrt(scale), 0);
+      const togGross = active.reduce((a, l) => a + l.gross * scale, 0);
+      // alone: best lines that fit in one household's hours
+      const sorted = [...active].sort((a, b) => b.gross / b.hrs - a.gross / a.hrs);
+      let aloneHrs = 0, aloneGross = 0, aloneLines = [];
+      for (const l of sorted) {
+        const h = l.hrs * Math.sqrt(scale);
+        if (aloneHrs + h <= hrsEach) { aloneHrs += h; aloneGross += l.gross * scale; aloneLines.push(l.name.toLowerCase()); }
+      }
+      const haveHrs = hrsEach * fam;
+      const net = togGross * margin;
+      const loan = loanPayment();
+      const annualNote = loan.monthly * 12;
+      const cover = annualNote > 0 ? net / annualNote : 0;
+      const payoffYears = (() => {
+        if (net <= 0) return Infinity;
+        const r = 0.075, P = loan.principal, A = net;
+        if (A <= P * r) return Infinity;
+        return Math.log(A / (A - P * r)) / Math.log(1 + r);
+      })();
+      $("aloneGross").textContent = money(aloneGross);
+      $("aloneNote").textContent = aloneLines.length ? `In ${hrsEach} hours a week one household can run ${aloneLines.join(" and ")}. Everything else on the list never happens.` : `Nothing on the list fits in ${hrsEach} hours a week for one household.`;
+      $("togGross").textContent = money(togGross);
+      $("togNote").textContent = `${active.length} product lines, ${Math.round(needHrs)} hours a week spread across ${fam} households. About ${Math.round(needHrs / fam)} hours each.`;
+      $("bizNeedHrs").textContent = num(Math.round(needHrs));
+      $("bizHaveHrs").textContent = `${fam} households × ${hrsEach} hrs = ${haveHrs} hrs available. ${needHrs <= haveHrs ? "It fits." : "Scale back or add hours."}`;
+      $("bizNet").textContent = money(net);
+      $("bizNetEach").textContent = `${money(net / fam)} per household at ${Math.round(margin * 100)}% kept`;
+      $("bizCover").textContent = (Math.round(cover * 10) / 10) + "×";
+      $("bizCoverSub").textContent = `land + infrastructure note of about ${money(loan.monthly)}/mo (75% financed, 20 yrs)`;
+      $("bizPayoff").textContent = isFinite(payoffYears) ? `${Math.round(payoffYears * 10) / 10} yrs` : "never";
+      $("bizLine").textContent = needHrs > hrsEach ? `This plan needs ${Math.round(needHrs)} hours a week. One family has ${hrsEach}.` : "One family could do this. Six could do it well.";
+      $("bizWhy").textContent = `Alone, a household picks the one or two lines it can fit around a job and makes ${money(aloneGross)} on the side. Together, the same ${hrsEach} hours from each of ${fam} households run the whole list and gross ${money(togGross)}, which after expenses is ${money(net)} a year toward the land, then toward somebody's mortgage, then toward somebody's freedom. The math only works with all of us.`;
+    }
+    bizEl.addEventListener("change", renderBiz);
+    ["bizScale", "bizHours", "bizMargin"].forEach((id) => $(id).addEventListener("input", renderBiz));
+    landIds.forEach((id) => $(id).addEventListener("input", renderBiz));
+    renderBiz();
+  }
+
   // ---------- 250 reasons ----------
   const R = window.REASONS || [];
   const cats = [...new Set(R.map((r) => r.cat))];
