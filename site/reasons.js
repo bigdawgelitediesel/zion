@@ -1168,7 +1168,7 @@ window.REASONS = [
  {
   "n": 234,
   "cat": "Laws, freedom, and government",
-  "text": "Nobody is going to ask what ward you're in. If you're LDS, there are strong wards and stakes in Cheyenne and the Fort Collins Temple is 45 minutes away. If you're not, nobody notices."
+  "text": "Nobody is going to ask what ward you're in, or whether you go at all. For those who do, there are strong wards and stakes in Cheyenne and the Fort Collins Temple is about 50 minutes away. For those who don't, it never comes up."
  },
  {
   "n": 235,

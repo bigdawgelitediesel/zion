@@ -267,7 +267,7 @@ Written 2026-10-20. Aimed at people living along the Wasatch Front who are feeli
 231. Low regulatory burden on small business. Licensing, permitting, and zoning are handled at human scale.
 232. No state restrictions on wood stoves, gas appliances, or generators on your own property.
 233. A culture of leaving people alone. Wyoming's politics are conservative, but the day-to-day ethic is live and let live.
-234. Nobody is going to ask what ward you're in. If you're LDS, there are strong wards and stakes in Cheyenne and the Fort Collins Temple is 45 minutes away. If you're not, nobody notices.
+234. Nobody is going to ask what ward you're in, or whether you go at all. For those who do, there are strong wards and stakes in Cheyenne and the Fort Collins Temple is about 50 minutes away. For those who don't, it never comes up.
 235. Religious and cultural diversity at small-town scale. Catholic, Lutheran, Baptist, LDS, Orthodox, and none-of-the-above all share the same coffee shops.
 236. Side-by-sides and UTVs can be plated as multipurpose vehicles and driven on most roads except the interstate. You can drive the Ranger to the neighbor's.
 237. The Legislature meets a few blocks from downtown and the galleries are open. Your kids can watch the Wyoming Senate on a school day.
