@@ -232,7 +232,7 @@
     bizEl.innerHTML = LINES.map((l) => `
       <label class="biz-line">
         <input type="checkbox" data-line="${l.id}" checked>
-        <span class="bl-main"><strong>${l.name}</strong><span class="bl-note">${l.note}. Run by ${l.who}.</span></span>
+        <span class="bl-main"><strong>${l.name}</strong><span class="bl-note">${l.note}. ${l.who === "open" ? "Open role" : "Run by " + l.who}.</span></span>
         <span class="bl-num" data-gross="${l.id}">${money(l.gross)}</span>
         <span class="bl-hrs" data-hrs="${l.id}">${l.hrs} hrs/wk</span>
       </label>`).join("");
