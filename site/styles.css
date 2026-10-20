@@ -237,3 +237,24 @@ input:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
 .hh-note { display: block; font-size: .85rem; color: #cbbda4; margin-top: .15rem; }
 .hh-future { background: transparent; color: var(--ink); border: 2px dashed var(--ink-2); }
 .hh-future .hh-note { color: var(--muted); }
+
+/* Grandparents */
+.section-warm { background: #efe0c2; }
+.gp { display: grid; grid-template-columns: 1.4fr 1fr; gap: 2rem; align-items: start; }
+.gp-list { list-style: none; margin: 0; padding: 0; display: grid; gap: .9rem; }
+.gp-list li { padding-left: 1.4rem; position: relative; color: var(--ink-2); }
+.gp-list li::before { content: ""; position: absolute; left: 0; top: .55rem; width: 10px; height: 10px; border-radius: 50%; background: var(--rust); }
+.gp-list strong { color: var(--ink); font-weight: 600; }
+.gp-calc { background: var(--ink); color: var(--cream); border-radius: var(--radius); padding: 1.4rem; position: sticky; top: 70px; }
+.gp-calc h3 { color: var(--gold); text-transform: uppercase; letter-spacing: .06em; }
+.gp-calc-note { color: #cbbda4; font-size: .95rem; }
+.gp-calc label { display: flex; flex-direction: column; gap: .3rem; font-family: var(--display); text-transform: uppercase; letter-spacing: .06em; font-size: .78rem; color: #e8dcc6; margin-bottom: .7rem; }
+.gp-calc input { background: #2a221d; color: var(--cream); border-color: #4a3f36; }
+.gp-out { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; margin: 1rem 0; }
+.gp-out div { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14); border-radius: 12px; padding: .8rem 1rem; text-align: center; }
+.gp-out span { display: block; font-family: var(--display); text-transform: uppercase; letter-spacing: .1em; font-size: .75rem; color: #cbbda4; }
+.gp-out strong { display: block; font-family: var(--display); font-size: 2.6rem; line-height: 1.1; color: var(--gold); }
+.gp-out em { font-style: normal; font-size: .85rem; color: #e8dcc6; }
+.gp-ten { margin: 0; font-size: .98rem; color: #e8dcc6; }
+.gp-ten strong { color: var(--gold); }
+@media (max-width: 860px) { .gp { grid-template-columns: 1fr; } .gp-calc { position: static; } }

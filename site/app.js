@@ -41,6 +41,15 @@
   $("cmpFamilies").addEventListener("input", renderCompare);
   renderCompare();
 
+  // ---------- Grandparent days ----------
+  function renderGp() {
+    const days = Math.max(0, val("gpVisits")) * Math.max(0, val("gpDays"));
+    $("gpNow").textContent = num(Math.min(days, 365));
+    $("gpNowTen").textContent = num(Math.min(days, 365) * 10);
+  }
+  ["gpVisits", "gpDays"].forEach((id) => $(id).addEventListener("input", renderGp));
+  renderGp();
+
   // ---------- Savings calculator ----------
   const payment = (P, ratePct, years = 30) => {
     const r = ratePct / 100 / 12, n = years * 12;

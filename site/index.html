@@ -21,6 +21,7 @@
   <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <div class="nav-links" id="navLinks">
     <a href="#why">Why together</a>
+    <a href="#grandparents">Grandparents</a>
     <a href="#numbers">The numbers</a>
     <a href="#land">The land</a>
     <a href="#homestead">The homestead</a>
@@ -129,6 +130,38 @@
         <thead><tr><th>Item</th><th>Five houses in five towns</th><th>One piece of land</th></tr></thead>
         <tbody id="compareBody"></tbody>
       </table>
+    </div>
+  </div>
+</section>
+
+<!-- GRANDPARENTS -->
+<section class="section section-warm" id="grandparents">
+  <div class="wrap">
+    <p class="eyebrow">The grandparents</p>
+    <h2>Every grandkid a short walk from Grandma and Grandpa.</h2>
+    <div class="gp">
+      <div class="gp-text">
+        <p class="intro">Right now the grandkids are spread across towns and states, and the grandparents see them in bursts: a holiday, a long weekend, a week in the summer. On the same land, that turns into every single day.</p>
+        <ul class="gp-list">
+          <li><strong>Grandparents as people, not visitors.</strong> The kids learn who they actually are: the stories, the jokes, the way Grandpa fixes things and the way Grandma runs a kitchen. That only happens with time, and time is what this buys.</li>
+          <li><strong>After-school at Grandma's.</strong> Cookies on the counter, homework at the table, a walk out to the barn. The grandparents get to be the soft landing every afternoon instead of a voice on a screen.</li>
+          <li><strong>Every cousin at one table.</strong> Sunday dinner with all the grandkids at once, not one family at a time on a rotating schedule. The grandparents get the whole crew together as a normal week, not a once-a-year production.</li>
+          <li><strong>What they know gets passed down.</strong> Gardening, canning, sewing, welding, horses, cattle, cooking for twenty. The grandkids learn it by doing it next to them, the way it used to work.</li>
+          <li><strong>Help in both directions.</strong> The grandparents are backup for school pickups, sick days, and new babies. Later, when they need the help, there are six households and a pile of grown grandkids within shouting distance. Nobody moves them anywhere.</li>
+          <li><strong>They live with Tara and Steve, surrounded by everyone.</strong> Their own space in a house full of family, with every other household a few hundred yards away. The best of both.</li>
+        </ul>
+      </div>
+      <div class="gp-calc">
+        <h3>Days with the grandkids</h3>
+        <p class="gp-calc-note">How often does a grandkid see Grandma and Grandpa today?</p>
+        <label>Visits per year<input type="number" id="gpVisits" min="0" max="52" value="4"></label>
+        <label>Days per visit<input type="number" id="gpDays" min="1" max="30" value="3"></label>
+        <div class="gp-out">
+          <div><span>Now</span><strong id="gpNow">12</strong><em>days a year</em></div>
+          <div><span>On the land</span><strong>365</strong><em>days a year</em></div>
+        </div>
+        <p class="gp-ten">Over the next ten years that is <strong id="gpNowTen">120</strong> days together versus <strong>3,650</strong>. Those are the years the grandkids are still kids.</p>
+      </div>
     </div>
   </div>
 </section>
