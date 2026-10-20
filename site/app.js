@@ -33,6 +33,7 @@
       ["Beef and eggs", "Store prices, store quality", "Your own herd and coop; one family can't, " + f + " can"],
       ["Big jobs (fence, hay, barn)", "Hire it out or burn a month", `A Saturday with ${f * 2}+ adults and a grill`],
       ["Holidays", `${f} cars on the interstate`, "Walk across the pasture"],
+      ["Going on vacation", "House-sitter, kennel, dead plants, a favor owed", "Home, animals, and garden looked after by family"],
       ["A hard year", "You handle it alone", "Nobody handles anything alone"]
     ];
     $("compareBody").innerHTML = rows.map((r) => `<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join("");
@@ -93,7 +94,7 @@
   }
   landIds.forEach((id) => { $(id).value = D[id]; $(id).addEventListener("input", renderLand); });
 
-  // ---------- Compound map ----------
+  // ---------- Land concept map ----------
   function drawMap(fam, future) {
     const W = 640, H = 440;
     let s = "";
