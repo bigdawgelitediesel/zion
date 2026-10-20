@@ -86,7 +86,7 @@
     $("outAllIn").textContent = money(allIn);
     const future = Math.max(0, Math.min(6, Math.round(val("futureSites"))));
     $("outAllInNote").textContent = `Land, your share of shared infrastructure, and a ${num(val("buildSqFt"))} sq ft home. Of that, only ${money(landEach + infraEach)} is the part we have to do together; the house is each family's own timeline and budget.${future ? ` The layout also reserves ${future} more home sites for later, so kids who grow up here and new households have a place without buying more ground.` : ""} For comparison, Salt Lake County's median single-family home alone is over $600,000.`;
-    $("mapFamilies").textContent = fam + (future ? ` (plus ${future} future sites)` : "");
+    $("mapFamilies").textContent = `${fam} families` + (future ? ` plus ${future} future sites` : "");
     $("mapAcres").textContent = num(acres);
     drawMap(fam, future);
     renderHomestead();
