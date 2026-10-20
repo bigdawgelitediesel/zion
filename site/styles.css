@@ -306,3 +306,14 @@ input:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
 .biz-col p { margin: 0; font-size: .92rem; }
 @media (max-width: 900px) { .biz { grid-template-columns: 1fr; } }
 @media (max-width: 560px) { .biz-controls { grid-template-columns: 1fr; } .biz-line { grid-template-columns: 22px 1fr; } .bl-num, .bl-hrs { grid-column: 2; } .biz-compare { grid-template-columns: 1fr; } }
+
+/* Callout */
+.callout { display: grid; grid-template-columns: 1.1fr 1fr; gap: 2rem; background: var(--ink); color: var(--cream); border-radius: var(--radius); padding: 2rem; margin-top: 2.5rem; }
+.callout .eyebrow { color: var(--gold); }
+.callout h3 { font-size: clamp(1.5rem, 3vw, 2.2rem); text-transform: uppercase; }
+.callout-text p:last-child { color: #e8dcc6; margin: 0; }
+.callout-list { list-style: none; margin: 0; padding: 0; display: grid; gap: .7rem; }
+.callout-list li { padding-left: 1.2rem; position: relative; color: #e8dcc6; font-size: .98rem; }
+.callout-list li::before { content: ""; position: absolute; left: 0; top: .55rem; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+.callout-list strong { color: var(--cream); }
+@media (max-width: 860px) { .callout { grid-template-columns: 1fr; padding: 1.4rem; } }
