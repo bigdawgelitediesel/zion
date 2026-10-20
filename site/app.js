@@ -11,7 +11,7 @@
     const k = el.getAttribute("data-cfg");
     if (C[k]) el.textContent = C[k];
   });
-  document.title = C.projectName + ": Our Land in Wyoming";
+  document.title = C.projectName;
 
   // ---------- Nav ----------
   const navToggle = $("navToggle"), navLinks = $("navLinks");

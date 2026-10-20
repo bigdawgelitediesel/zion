@@ -2,7 +2,8 @@
 
 Family pitch site: move from Utah to Cheyenne, Wyoming, buy land together, build next to each other, raise cattle and chickens.
 
-- **Live:** https://zion-nine-fawn.vercel.app
+- **Live:** https://thunderbuck-ranch.vercel.app (also zion-nine-fawn.vercel.app)
+- **Name:** Thunderbuck Ranch (never "Zion," never "compound")
 - **Reasons list:** `250-reasons-utah-to-cheyenne.md` (source of truth; regenerate `site/reasons.js` from it, see below)
 - **Site:** `site/` (static HTML/CSS/JS, no build step)
 

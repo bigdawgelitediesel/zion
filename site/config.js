@@ -1,7 +1,7 @@
 // Edit this file to change names, contact info, and the default numbers in the calculators.
 // Everything else on the page reads from here.
 window.CONFIG = {
-  projectName: "The Home Place",   // working title; Jacob says it can NOT be Zion
+  projectName: "Thunderbuck Ranch",
   familyName: "the family",
   host: "Jacob",
   contactEmail: "bigdawgelitediesel@gmail.com",
