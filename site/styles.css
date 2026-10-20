@@ -228,3 +228,12 @@ input:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
 .phase-title span { font-size: .8rem; letter-spacing: .18em; color: var(--rust); background: var(--cream-2); padding: .25rem .6rem; border-radius: 999px; }
 .role-who { display: inline-block; font-family: var(--display); text-transform: uppercase; letter-spacing: .12em; font-size: .78rem; color: var(--cream); background: var(--rust); padding: .25rem .6rem; border-radius: 999px; }
 .role h3 { margin-top: .7rem; }
+
+/* Households */
+.households { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: .7rem; margin-bottom: 2rem; }
+.hh { background: var(--ink); color: var(--cream); border-radius: 12px; padding: .9rem 1rem; position: relative; }
+.hh-num { position: absolute; top: .6rem; right: .8rem; font-family: var(--display); color: var(--gold); font-size: .9rem; }
+.hh strong { display: block; font-family: var(--display); font-size: 1.15rem; text-transform: uppercase; letter-spacing: .04em; padding-right: 1.2rem; }
+.hh-note { display: block; font-size: .85rem; color: #cbbda4; margin-top: .15rem; }
+.hh-future { background: transparent; color: var(--ink); border: 2px dashed var(--ink-2); }
+.hh-future .hh-note { color: var(--muted); }

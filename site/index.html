@@ -118,7 +118,7 @@
     <div class="compare" id="compare">
       <div class="compare-head">
         <h3>Apart vs. together</h3>
-        <label class="inline-field">Families: <input type="number" id="cmpFamilies" min="2" max="12" value="5"></label>
+        <label class="inline-field">Families: <input type="number" id="cmpFamilies" min="2" max="12" value="6"></label>
       </div>
       <table class="table">
         <thead><tr><th>Item</th><th>Five houses in five towns</th><th>One piece of land</th></tr></thead>
@@ -172,6 +172,7 @@
         <label>Total acres<input type="number" id="acres" step="10"></label>
         <label>Price per acre<input type="number" id="pricePerAcre" step="250"></label>
         <label>Families<input type="number" id="families" min="2" max="12"></label>
+        <label>Future home sites reserved<input type="number" id="futureSites" min="0" max="6"></label>
         <label>Shared wells<input type="number" id="wells" min="1" max="6"></label>
         <label>Cost per well<input type="number" id="wellCost" step="1000"></label>
         <label>Septic per home<input type="number" id="septicCost" step="500"></label>
@@ -336,7 +337,10 @@
   <div class="wrap">
     <p class="eyebrow">Who does what</p>
     <h2>A place where everybody's work matters.</h2>
-    <p class="intro">A family compound only works if the people on it have real jobs on it. Some of these are already spoken for. The rest are open, and the goods list grows with whoever shows up.</p>
+    <p class="intro">Six households now, with room for three or four more later. One piece of ground. A family compound only works if the people on it have real jobs on it. Some of these are already spoken for. The rest are open, and the goods list grows with whoever shows up.</p>
+
+    <div class="households" id="households"></div>
+
     <div class="cards">
       <article class="card role">
         <span class="role-who">Logan</span>
@@ -349,9 +353,14 @@
         <p>Trucks, tractors, skid steer, side-by-sides, generators, trailers. Diagnosis, repair, and performance work, in a real shop on the property. That also means paid work from the outside coming in through the gate.</p>
       </article>
       <article class="card role">
-        <span class="role-who">Already here</span>
-        <h3>Jacob and Abby, Cheyenne</h3>
-        <p>Two of us are already on the ground. We know the town, the employers, the realtors, and the roads out to the parcels. Everyone who comes next has a place to land and people who have already done the move.</p>
+        <span class="role-who">Abby</span>
+        <h3>The bakery</h3>
+        <p>Sourdough, bread, and baked goods out of a real bakery kitchen on the place. Farmers market Saturdays, standing orders in town, and the first thing people smell when they pull in the gate.</p>
+      </article>
+      <article class="card role">
+        <span class="role-who">The kids</span>
+        <h3>Always someone watching, always someone to play with</h3>
+        <p>Cousins on the same ground every day. Grandparents, aunts, and uncles within shouting distance. Nobody pays for daycare and nobody plays alone.</p>
       </article>
       <article class="card role">
         <span class="role-who">Open</span>
@@ -366,7 +375,7 @@
       <article class="card role">
         <span class="role-who">Everyone</span>
         <h3>Make and sell goods</h3>
-        <p>Freezer beef by the quarter and half. Eggs. Baked goods. Honey and produce. Firewood. Welding and fab. Vehicle and equipment work. Whatever each household is good at becomes a product with the family name on it, sold at the Cheyenne farmers market, to I-80 traffic, and online. Wyoming has no corporate income tax and the LLC costs $60 a year to keep.</p>
+        <p>Freezer beef by the quarter and half. Eggs. Sourdough and baked goods. Handmade soaps. Honey and produce. Firewood. Welding and fab. Vehicle and equipment work. Whatever each household is good at becomes a product with the family name on it, sold at the Cheyenne farmers market, to I-80 traffic, and online. Wyoming has no corporate income tax and the LLC costs $60 a year to keep.</p>
       </article>
     </div>
   </div>

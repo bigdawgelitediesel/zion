@@ -67,7 +67,7 @@
   renderSavings();
 
   // ---------- Land calculator ----------
-  const landIds = ["acres", "pricePerAcre", "families", "wells", "wellCost", "septicCost", "roadFeet", "roadCostPerFoot", "powerFeet", "powerCostPerFoot", "buildSqFt", "buildCostPerSqFt"];
+  const landIds = ["acres", "pricePerAcre", "families", "futureSites", "wells", "wellCost", "septicCost", "roadFeet", "roadCostPerFoot", "powerFeet", "powerCostPerFoot", "buildSqFt", "buildCostPerSqFt"];
   function renderLand() {
     const acres = val("acres"), ppa = val("pricePerAcre");
     const fam = Math.max(2, Math.min(12, Math.round(val("families")) || 2));
@@ -84,16 +84,17 @@
     $("outHomeEach").textContent = money(homeEach);
     $("outHomeSub").textContent = `${num(val("buildSqFt"))} sq ft at ${money(val("buildCostPerSqFt"))}/sq ft, plus septic`;
     $("outAllIn").textContent = money(allIn);
-    $("outAllInNote").textContent = `Land, your share of shared infrastructure, and a ${num(val("buildSqFt"))} sq ft home. Of that, only ${money(landEach + infraEach)} is the part we have to do together; the house is each family's own timeline and budget. For comparison, Salt Lake County's median single-family home alone is over $600,000.`;
-    $("mapFamilies").textContent = fam;
+    const future = Math.max(0, Math.min(6, Math.round(val("futureSites"))));
+    $("outAllInNote").textContent = `Land, your share of shared infrastructure, and a ${num(val("buildSqFt"))} sq ft home. Of that, only ${money(landEach + infraEach)} is the part we have to do together; the house is each family's own timeline and budget.${future ? ` The layout also reserves ${future} more home sites for later, so kids who grow up here and new households have a place without buying more ground.` : ""} For comparison, Salt Lake County's median single-family home alone is over $600,000.`;
+    $("mapFamilies").textContent = fam + (future ? ` (plus ${future} future sites)` : "");
     $("mapAcres").textContent = num(acres);
-    drawMap(fam);
+    drawMap(fam, future);
     renderHomestead();
   }
   landIds.forEach((id) => { $(id).value = D[id]; $(id).addEventListener("input", renderLand); });
 
   // ---------- Compound map ----------
-  function drawMap(fam) {
+  function drawMap(fam, future) {
     const W = 640, H = 440;
     let s = "";
     // pasture
@@ -123,9 +124,21 @@
     s += `<rect x="${bx - 8}" y="${by - 14}" width="16" height="16" fill="#1b1511"/>`;
     s += `<text x="${bx}" y="${by - 58}" text-anchor="middle" font-family="Oswald, sans-serif" font-size="13" fill="#3f3a28" letter-spacing="2">BARN + HAY</text>`;
     // garden + coop (left, near houses)
-    s += `<rect x="60" y="200" width="110" height="70" rx="4" fill="#9fb07e" stroke="#5d6b4d" stroke-width="2"/>`;
-    for (let i = 1; i < 6; i++) s += `<line x1="${60 + i * 18}" y1="204" x2="${60 + i * 18}" y2="266" stroke="#7c8b6a" stroke-width="1.5"/>`;
-    s += `<text x="115" y="288" text-anchor="middle" font-family="Oswald, sans-serif" font-size="11" fill="#3f3a28" letter-spacing="2">GARDEN</text>`;
+    s += `<rect x="130" y="200" width="110" height="70" rx="4" fill="#9fb07e" stroke="#5d6b4d" stroke-width="2"/>`;
+    for (let i = 1; i < 6; i++) s += `<line x1="${130 + i * 18}" y1="204" x2="${130 + i * 18}" y2="266" stroke="#7c8b6a" stroke-width="1.5"/>`;
+    s += `<text x="185" y="288" text-anchor="middle" font-family="Oswald, sans-serif" font-size="11" fill="#3f3a28" letter-spacing="2">GARDEN</text>`;
+    // future home sites along a spur road on the left
+    if (future > 0) {
+      const sx = 70, topY = roadY - 9 - future * 58;
+      s += `<rect x="${sx - 9}" y="${topY}" width="18" height="${roadY - topY}" rx="9" fill="#b8ad96" opacity=".7"/>`;
+      for (let j = 0; j < future; j++) {
+        const y = roadY - 30 - j * 58;
+        const hx = sx + 34;
+        s += `<line x1="${sx}" y1="${y}" x2="${hx - 18}" y2="${y}" stroke="#b8ad96" stroke-width="5" opacity=".7"/>`;
+        s += `<path d="M${hx - 14} ${y + 12} v-16 l14 -10 l14 10 v16 z" fill="none" stroke="#5f5a3e" stroke-width="2" stroke-dasharray="4 3"/>`;
+        s += `<text x="${hx}" y="${y + 24}" text-anchor="middle" font-family="Oswald, sans-serif" font-size="8" fill="#5f5a3e" letter-spacing="1">FUTURE</text>`;
+      }
+    }
     s += `<rect x="${W - 150}" y="210" width="60" height="40" rx="3" fill="#d9a441" stroke="#8f3217" stroke-width="2"/>`;
     s += `<rect x="${W - 150}" y="196" width="60" height="14" fill="#b5411f"/>`;
     s += `<rect x="${W - 86}" y="212" width="40" height="38" fill="none" stroke="#5f5a3e" stroke-width="1.5" stroke-dasharray="3 3"/>`;
@@ -144,7 +157,9 @@
       // house
       s += `<path d="M${x - 16} ${y + 10} v-18 l16 -12 l16 12 v18 z" fill="#f6efe3" stroke="#1b1511" stroke-width="2"/>`;
       s += `<rect x="${x - 4}" y="${y - 2}" width="8" height="12" fill="#b5411f"/>`;
-      s += `<text x="${x}" y="${y + 26}" text-anchor="middle" font-family="Oswald, sans-serif" font-size="10" fill="#3f3a28" letter-spacing="1">HOME ${i + 1}</text>`;
+      const hh = (C.households || [])[i];
+      const label = hh && fam <= (C.households || []).length ? hh.name.toUpperCase().replace(" & HIS FUTURE PERSON", " & ?") : `HOME ${i + 1}`;
+      s += `<text x="${x}" y="${y + 26}" text-anchor="middle" font-family="Oswald, sans-serif" font-size="${fam > 5 ? 9 : 10}" fill="#3f3a28" letter-spacing=".5">${label}</text>`;
     }
     $("compoundMap").innerHTML = s;
   }
@@ -224,6 +239,14 @@
     sp.querySelector(".spot-cat").textContent = r.cat;
     sp.scrollIntoView({ behavior: "smooth", block: "center" });
   });
+
+  // ---------- Households ----------
+  const hhEl = $("households");
+  if (hhEl && C.households && C.households.length) {
+    hhEl.innerHTML = C.households.map((h, i) =>
+      `<div class="hh"><span class="hh-num">${i + 1}</span><strong>${esc(h.name)}</strong>${h.note ? `<span class="hh-note">${esc(h.note)}</span>` : ""}</div>`
+    ).join("") + (D.futureSites ? `<div class="hh hh-future"><span class="hh-num">+</span><strong>${D.futureSites} more sites</strong><span class="hh-note">reserved for later: kids who grow up here, new households</span></div>` : "");
+  }
 
   // ---------- Answers ----------
   function buildLink(subject, body) {

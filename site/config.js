@@ -8,6 +8,16 @@ window.CONFIG = {
   contactPhone: "",            // e.g. "3075551234" to enable the text-message button
   cityLabel: "Cheyenne, Wyoming",
 
+  // The households being pitched. Order is the order of home sites on the concept map.
+  households: [
+    { name: "Jacob & Abby", note: "already in Cheyenne" },
+    { name: "Logan & Madi", note: "" },
+    { name: "Troy & Leah", note: "" },
+    { name: "Bri & Tyler", note: "" },
+    { name: "Jer & his future person", note: "" },
+    { name: "Tara & Steve", note: "with the grandparents" }
+  ],
+
   // Calculator defaults (all editable on the page by the visitor)
   defaults: {
     income: 120000,            // household income, $/yr
@@ -18,7 +28,8 @@ window.CONFIG = {
 
     acres: 160,                // total parcel size
     pricePerAcre: 5000,        // raw land outside Cheyenne, rough 2026 range $3k to $8k
-    families: 5,
+    families: 6,
+    futureSites: 4,            // extra home sites reserved for later (kids, new households)
     wells: 2,                  // shared wells
     wellCost: 35000,
     septicCost: 15000,         // per home
