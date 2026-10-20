@@ -221,3 +221,10 @@ input:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
   .hero { min-height: 0; }
   .hero-inner { padding: 4rem 16px 6rem; }
 }
+
+/* Phases and roles */
+.phase { margin-bottom: 2.2rem; }
+.phase-title { display: flex; align-items: baseline; gap: .8rem; font-size: 1.6rem; text-transform: uppercase; margin: 0 0 1rem; padding-bottom: .5rem; border-bottom: 2px solid var(--line); }
+.phase-title span { font-size: .8rem; letter-spacing: .18em; color: var(--rust); background: var(--cream-2); padding: .25rem .6rem; border-radius: 999px; }
+.role-who { display: inline-block; font-family: var(--display); text-transform: uppercase; letter-spacing: .12em; font-size: .78rem; color: var(--cream); background: var(--rust); padding: .25rem .6rem; border-radius: 999px; }
+.role h3 { margin-top: .7rem; }
