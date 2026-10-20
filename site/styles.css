@@ -317,3 +317,99 @@ input:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
 .callout-list li::before { content: ""; position: absolute; left: 0; top: .55rem; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
 .callout-list strong { color: var(--cream); }
 @media (max-width: 860px) { .callout { grid-template-columns: 1fr; padding: 1.4rem; } }
+
+/* ===== Review pass: contrast, sizing, mobile, controls, print ===== */
+:root { --muted: #6a5d52; }
+.section, #top { scroll-margin-top: 72px; }
+.hint { text-transform: none; letter-spacing: 0; font-size: .88rem; }
+.calc-inputs label, .gp-calc label, .biz-controls label, .tile-label, .table th, .inline-field { font-size: .85rem; }
+.chip { font-size: .85rem; padding: .6rem .9rem; }
+.reasons-list li .cat { font-size: .78rem; }
+.bl-note { font-size: .9rem; }
+.bl-hrs { font-size: .85rem; color: var(--ink-2); }
+.nav-toggle { padding: .6rem; }
+input[type="number"], input[type="text"], input[type="search"], .biz-controls select { border-color: #a89a80; }
+.biz-together strong { color: var(--cream); }
+.tile, .biz-col, .gp-out div { min-width: 0; }
+.tile strong, .biz-col strong, .total strong { overflow-wrap: anywhere; }
+
+/* Money fields */
+.money { position: relative; display: block; }
+.money::before { content: "$"; position: absolute; left: .7rem; top: 50%; transform: translateY(-50%); color: var(--muted); font-family: var(--body); font-size: 1.05rem; pointer-events: none; }
+.money input { padding-left: 1.5rem; }
+
+/* Range + segmented controls */
+input[type="range"] { accent-color: var(--rust); width: 100%; padding: .4rem 0; }
+label output { font-family: var(--body); font-weight: 600; color: var(--rust); margin-left: .4rem; font-size: 1rem; }
+.seg { display: flex; gap: .3rem; }
+.seg button { flex: 1; padding: .6rem .4rem; border: 1px solid #a89a80; border-radius: 8px; background: var(--paper); font-family: var(--display); text-transform: uppercase; letter-spacing: .06em; font-size: .8rem; color: var(--ink-2); cursor: pointer; }
+.seg button.active { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+
+/* Calculators: total block first on mobile, pinned under the nav */
+.calc { grid-template-columns: 1fr 1.3fr; grid-template-areas: "inputs out" "inputs total"; }
+.calc-inputs { grid-area: inputs; }
+.calc-out { grid-area: out; }
+.calc > .total { grid-area: total; }
+.calc-note { font-size: .95rem; color: var(--ink-2); margin: .9rem 0 0; }
+.calc-note strong { color: var(--rust); }
+@media (max-width: 860px) {
+  .calc { grid-template-columns: 1fr; grid-template-areas: "total" "inputs" "out"; }
+  .calc > .total { position: sticky; top: 56px; z-index: 5; padding: .7rem 1rem; }
+  .calc > .total p { display: none; }
+  .calc > .total strong { font-size: 1.5rem; margin: 0; }
+}
+
+/* Compare block collapsed by default */
+details.compare > summary { cursor: pointer; list-style: none; }
+details.compare > summary::-webkit-details-marker { display: none; }
+details.compare > summary h3 { margin: 0; display: inline; }
+details.compare > summary::after { content: "+"; float: right; font-size: 1.5rem; color: var(--rust); line-height: 1; }
+details.compare[open] > summary::after { content: "–"; }
+details.compare[open] > summary { margin-bottom: .8rem; }
+
+/* Biz rows on small screens */
+.bl-meta { white-space: nowrap; }
+@media (max-width: 560px) {
+  .biz-line { grid-template-columns: 22px 1fr; }
+  .bl-meta { grid-column: 2; }
+}
+
+/* Hero on phones */
+@media (max-width: 640px) {
+  .hero-inner { padding: 3rem 16px 5rem; }
+  .hero-stats { grid-template-columns: 1fr 1fr; gap: .6rem; }
+  .hero-stats li { padding: .6rem .8rem; background: rgba(27,21,17,.7); }
+  .hero-stats strong { font-size: 1.4rem; }
+  .hero-stats span { font-size: .8rem; }
+  .hero-actions .btn { flex: 1 1 100%; text-align: center; }
+  .section { padding: 2.75rem 0; }
+  .map-svg { padding: .5rem; }
+}
+
+/* Fixed answer bar on phones */
+.cta-bar { display: none; }
+@media (max-width: 900px) {
+  .cta-bar { display: flex; justify-content: space-between; align-items: center; position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; background: var(--rust); color: #fff; text-decoration: none; font-family: var(--display); text-transform: uppercase; letter-spacing: .08em; font-size: .9rem; padding: .9rem 16px calc(.9rem + env(safe-area-inset-bottom)); box-shadow: 0 -4px 16px rgba(0,0,0,.2); }
+  .cta-bar span { background: #fff; color: var(--rust); padding: .3rem .7rem; border-radius: 6px; }
+  .cta-bar.hidden { display: none; }
+  body { padding-bottom: 64px; }
+}
+
+/* Motion */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .btn, .answer { transition: none; }
+  .answer:hover { transform: none; }
+}
+
+/* Print */
+@media print {
+  .nav, .hero-sky, .hero-horizon, .hero-actions, .reasons-tools, .chips, .reasons-more, .share, .week-toggle, .cta-bar { display: none !important; }
+  .hero, .section-dark, .total, .hh, .learn-item, .gp-calc, .spotlight, .callout, .biz-together, .footer, .gp-calc input { background: #fff !important; color: #000 !important; box-shadow: none !important; border: 1px solid #999; }
+  .hero *, .section-dark *, .total *, .hh *, .learn-item *, .gp-calc *, .spotlight *, .callout *, .biz-together *, .footer * { color: #000 !important; text-shadow: none !important; }
+  .week[hidden] { display: block !important; }
+  .map-svg, .gp-calc, .calc > .total { position: static; }
+  .section { padding: 1.5rem 0; }
+  .card, .tile, .compare, .calc-inputs, .biz-lines, .faq details, .timeline li { break-inside: avoid; box-shadow: none; }
+  body { padding-bottom: 0; }
+}
