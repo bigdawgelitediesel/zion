@@ -258,3 +258,24 @@ input:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
 .gp-ten { margin: 0; font-size: .98rem; color: #e8dcc6; }
 .gp-ten strong { color: var(--gold); }
 @media (max-width: 860px) { .gp { grid-template-columns: 1fr; } .gp-calc { position: static; } }
+
+/* Kids */
+.kids-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 2rem; align-items: start; }
+.kids-week { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 1.2rem; box-shadow: var(--shadow); }
+.week-toggle { display: flex; gap: .4rem; background: var(--cream-2); padding: .3rem; border-radius: 10px; margin-bottom: 1rem; }
+.week-btn { flex: 1; border: 0; background: transparent; font-family: var(--display); text-transform: uppercase; letter-spacing: .08em; font-size: .85rem; padding: .6rem; border-radius: 8px; cursor: pointer; color: var(--ink-2); }
+.week-btn.active { background: var(--ink); color: var(--cream); }
+.week { list-style: none; margin: 0; padding: 0; }
+.week li { display: grid; grid-template-columns: 48px 1fr; gap: .6rem; padding: .6rem 0; border-bottom: 1px solid var(--line); font-size: .98rem; color: var(--ink-2); }
+.week li:last-child { border-bottom: 0; }
+.week li span { font-family: var(--display); text-transform: uppercase; letter-spacing: .08em; color: var(--rust); font-size: .9rem; padding-top: .1rem; }
+#weekLand li { color: var(--ink); }
+.kids-points { display: grid; gap: .8rem; }
+.kp { background: var(--paper); border-left: 4px solid var(--gold); border-radius: 0 10px 10px 0; padding: .8rem 1rem; }
+.kp strong { font-family: var(--display); text-transform: uppercase; letter-spacing: .04em; font-size: 1.05rem; display: block; }
+.kp p { margin: .2rem 0 0; color: var(--ink-2); font-size: .98rem; }
+.kids-sub { margin-top: 2.5rem; text-transform: uppercase; letter-spacing: .04em; }
+.learn { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: .8rem; }
+.learn-item { background: var(--ink); color: #e8dcc6; border-radius: 12px; padding: .9rem 1rem; font-size: .95rem; }
+.learn-item span { display: block; font-family: var(--display); text-transform: uppercase; letter-spacing: .1em; font-size: .78rem; color: var(--gold); margin-bottom: .2rem; }
+@media (max-width: 860px) { .kids-grid { grid-template-columns: 1fr; } }

@@ -50,6 +50,13 @@
   ["gpVisits", "gpDays"].forEach((id) => $(id).addEventListener("input", renderGp));
   renderGp();
 
+  // ---------- Kids week toggle ----------
+  document.querySelectorAll(".week-btn").forEach((b) => b.addEventListener("click", () => {
+    document.querySelectorAll(".week-btn").forEach((x) => x.classList.toggle("active", x === b));
+    $("weekNow").hidden = b.dataset.week !== "now";
+    $("weekLand").hidden = b.dataset.week !== "land";
+  }));
+
   // ---------- Savings calculator ----------
   const payment = (P, ratePct, years = 30) => {
     const r = ratePct / 100 / 12, n = years * 12;
